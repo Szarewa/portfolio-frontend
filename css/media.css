@@ -1,0 +1,73 @@
+@media only screen and (max-width: 768px){
+	section {
+		padding: 1rem;
+	}
+	header {
+		flex-direction: row-reverse;
+	}
+	nav.nav_menu {
+		display: none;
+	}
+	.menu {
+		visibility: visible;
+	}
+	.menu.active span:nth-child(1){
+		transform: rotate(45deg) translateY(18px);
+		background-color: red;
+	}
+	.menu.active span:nth-child(2){
+		opacity: 0;
+	}
+	.menu.active span:nth-child(3){
+		transform: rotate(-45deg) translateY(-18px);
+		background-color: red;
+	}
+	
+	aside {
+		border: 1px solid #040336;
+		box-shadow: 3px 3px 6px black, -3px -3px 6px #F9DC04;
+		opacity: 0;
+		transform: translateX(-30px);
+		animation: fadeSlideRight 0.5s ease-in forwards;
+	}
+	@keyframes fadeSlideRight {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	.aside.active {
+		display: flex;
+	}
+	.mobile_nav {
+		display: flex;
+		flex-direction: column;
+		float: right;
+	}
+	.mobile_nav a {
+		margin: 1px;
+		padding: 1rem;
+	}
+	.mobile_nav a:hover {
+		cursor: pointer;
+		transition: all ease-in-out 0.2s;
+	}
+	.main {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 2rem;
+	}
+	.contact_content {
+		flex-direction: column;
+	}
+	.contact_info, .form {
+		flex-grow: 1;
+	}
+	input, textarea, .form button {
+		width: 100%
+	}
+	footer, .contact_info {
+		text-align: center;
+	}
+}
