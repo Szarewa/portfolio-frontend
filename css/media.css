@@ -2,6 +2,9 @@
 	section {
 		padding: 1rem;
 	}
+	.section-title {
+		text-align: center;
+	}
 	header {
 		flex-direction: row-reverse;
 	}
@@ -58,6 +61,14 @@
 		align-items: center;
 		margin-top: 2rem;
 	}
+
+	.section-title {
+		font-size: 1.8rem;
+	}
+	.project-content p {
+		font-size: 0.9rem;
+	}
+
 	.contact_content {
 		flex-direction: column;
 	}
