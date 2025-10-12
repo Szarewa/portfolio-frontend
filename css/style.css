@@ -181,6 +181,17 @@ article.photo {
   color: blue;
   opacity: 0.8;
 }
+/*** styling about section ***/
+.star {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.star:hover, .star.hovered {
+  color: var(--secondary-color);
+}
+.star.selected {
+  color: var(--secondary-color);
+}
 
 
 /*** styling Projects Section ***/

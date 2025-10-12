@@ -91,8 +91,16 @@
       technologies for effective problem solving. I enjoy researching and experimenting with new ideas to keep growing 
       as a developer.
     </p>
-
+    <div class="rating">
+      <span class="star" data-value="1"><i class="fa fa-star"></i></span>
+      <span class="star" data-value="2"><i class="fa fa-star"></i></span>
+      <span class="star" data-value="3"><i class="fa fa-star"></i></span>
+      <span class="star" data-value="4"><i class="fa fa-star"></i></span>
+      <span class="star" data-value="5"><i class="fa fa-star"></i></span>
+    </div>
     <h3>Comments and Reviews</h3>
+    <p>Total Rating: <span id="avgRating"></span> Out of <span id="totalRating"></span></p>
+    <article id="reviews"></article>
   </section>
   <!-- end about section -->
 
@@ -107,8 +115,8 @@
       <div class="project-content">
         <h3>School Management System</h3>
         <p>
-          A MERN stack web app for managing staff and students by admin and allowing staff access to view, edit and print 
-          students record
+          A MERN stack web app with JWT authentication for managing staff and students by admin and allowing staff access to view, edit and print 
+          students record with
         </p>
         <div class="tech-stack">
           <span>React</span><span>Node.js</span><span>Express</span><span>MySQL DB</span>
@@ -220,12 +228,13 @@
         </em>
       </div>
       <div class="form">
-        <h3>Feedback</h3>
-        <form>
-          <input type="text" placeholder="Your Name" required>
-          <input type="email" placeholder="Your Email" required>
-          <textarea placeholder="Your Message" required></textarea>
-          <button type="submit">Send</button>
+        <h3>Comment and Review</h3>
+        <form onsubmit="return false">
+          <span id="response"></span>
+          <input type="text" id="nameField" value="" placeholder="Your Name" />
+          <input type="email" id="emailField" value="" placeholder="Your Email" required>
+          <textarea id="msgField" value="" placeholder="Your Comment/Review" required></textarea>
+          <button type="submit" id="msgBtn">Comment</button>
         </form>
       </div>
     </div>
