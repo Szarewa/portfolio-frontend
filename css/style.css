@@ -189,13 +189,19 @@ article.photo {
 .star:hover, .star.hovered {
   color: var(--secondary-color);
 }
-.star.selected {
+.star.selected, .rated {
   color: var(--secondary-color);
+}
+.review_panel {
+  padding: 20px;
+}
+.review_title {
+  font-weight: bolder;
 }
 
 
 /*** styling Projects Section ***/
-.projects-grid {
+.projects-grid, #reviews {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
@@ -203,7 +209,7 @@ article.photo {
   margin: 0 auto;
 }
 
-.project-card {
+.project-card, .review_panel {
   background: #ffffff;
   border-radius: 16px;
   overflow: hidden;

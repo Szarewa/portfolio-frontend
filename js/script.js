@@ -13,8 +13,10 @@ const ratingRef = ref(db, "ratings");
 
 //get rating items
 const stars = document.querySelectorAll('.star');
-const avgRating = document.getElementById('avgRating');
-const totalRating = document.getElementById('totalRating');
+const avgRatingSpan = document.getElementById('avgRating');
+const totalRatingSpan = document.getElementById('totalRating');
+
+const reviews = document.getElementById('reviews');
 
 //retrieve comments from db
 const loadComments = () => {
@@ -23,7 +25,20 @@ const loadComments = () => {
 
     if(!commentsArray) return;
 
-    console.log(commentsArray);
+    let sortedComments = Object.values(commentsArray);
+    reviews.innerHTML = " ";
+
+    for (let sortedComment of sortedComments) {
+      console.log(sortedComment);
+      const dt = new Date(sortedComment.dateTime);
+      reviews.innerHTML += `
+        <div class='review_panel'>
+          <p class='review_title>${sortedComment.name !== "" ? sortedComment.name : sortedComment.email}</p>
+          <p class='review_msg>${sortedComment.message}</p>
+          <p class='review_period>${dt.toLocaleString()}</p>
+        </div>
+      `;
+    }
   })
 }
 loadComments();
@@ -35,9 +50,26 @@ const loadRatings = () => {
 
     if(!ratingsArray) return;
 
-    let sortedRatings = Object.values(ratingsArray);
+    const ratingValues = [];
 
-    console.log(sortedRatings);
+    let sortedRatings = Object.values(ratingsArray);
+    const ratingsLength = sortedRatings.length;
+
+    avgRatingSpan.textContent = "";
+    totalRatingSpan.textContent = "";
+
+    for(let sortedRating of sortedRatings){
+      ratingValues.push(sortedRating.rating);
+    }
+
+    const sumRating = ratingValues.reduce((acc, ratingValue) => acc + ratingValue, 0);
+    const avgRating = Math.floor(sumRating/ratingsLength);
+
+    for(let i=0; i<avgRating; i++){
+      avgRatingSpan.innerHTML += `<span class='rated'><i class='fa fa-star'></i></span>`;
+    }
+
+    totalRatingSpan.textContent = `${ratingsLength} Ratings`;
   })
 }
 loadRatings();
