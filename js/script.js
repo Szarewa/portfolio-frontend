@@ -29,7 +29,6 @@ const loadComments = () => {
     reviews.innerHTML = " ";
 
     for (let sortedComment of sortedComments) {
-      console.log(sortedComment);
       const dt = new Date(sortedComment.dateTime);
       reviews.innerHTML += `
         <div class='review_panel'>
