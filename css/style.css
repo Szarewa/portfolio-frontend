@@ -198,6 +198,10 @@ article.photo {
 .review_title {
   font-weight: bolder;
 }
+.review_period {
+  text-align: right;
+  font-weight: bold;
+}
 
 
 /*** styling Projects Section ***/

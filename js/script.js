@@ -1,6 +1,6 @@
 //import firebase db
 import { db } from './firebaseConfig.js';
-import { ref, push, set, get, query, orderByChild, equalTo, onValue } from 
+import { ref, push, set, query, limitToLast, onValue } from 
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
 
 function _(x) {
@@ -10,6 +10,7 @@ function _(x) {
 //declaring db references
 const commentRef = ref(db, "comments");
 const ratingRef = ref(db, "ratings");
+const latestComments = query(commentRef, limitToLast(4));
 
 //get rating items
 const stars = document.querySelectorAll('.star');
@@ -20,7 +21,7 @@ const reviews = document.getElementById('reviews');
 
 //retrieve comments from db
 const loadComments = () => {
-  onValue(commentRef, (snapshot) => {
+  onValue(latestComments, (snapshot) => {
     const commentsArray = snapshot.val();
 
     if(!commentsArray) return;
@@ -29,12 +30,18 @@ const loadComments = () => {
     reviews.innerHTML = " ";
 
     for (let sortedComment of sortedComments) {
+      const posterName = sortedComment.name;
+      const posterMsg = sortedComment.message;
+      const posterEmail = sortedComment.email;
       const dt = new Date(sortedComment.dateTime);
+
+      if(!posterMsg || posterMsg.trim() === "") continue;
+
       reviews.innerHTML += `
         <div class='review_panel'>
-          <p class='review_title>${sortedComment.name !== "" ? sortedComment.name : sortedComment.email}</p>
-          <p class='review_msg>${sortedComment.message}</p>
-          <p class='review_period>${dt.toLocaleString()}</p>
+          <p class='review_title'>${posterName !== "" ? posterName : posterEmail}</p>
+          <p class='review_msg'>${posterMsg}</p>
+          <p class='review_period'>${dt.toLocaleString()}</p>
         </div>
       `;
     }
