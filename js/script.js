@@ -69,7 +69,7 @@ const loadRatings = () => {
     }
 
     const sumRating = ratingValues.reduce((acc, ratingValue) => acc + ratingValue, 0);
-    const avgRating = Math.floor(sumRating/ratingsLength);
+    const avgRating = Math.floor(sumRating/ratingsLength) + 1;
 
     for(let i=0; i<avgRating; i++){
       avgRatingSpan.innerHTML += `<span class='rated'><i class='fa fa-star'></i></span>`;
@@ -146,9 +146,9 @@ msgBtn.addEventListener('click', ()=> {
 
 //typing effect
 
-const devTypes = ["Frontend", "Backend", "FullStack", "Freelancer", "Tutor for"];
+const devTypes = ["JavaScript Developer", "Frontend Developer", "Backend Developer", "FullStack Developer",
+  "Freelancer", "Tutor"];
 const wordLoc = document.getElementById('devType');
-// const devHide = document.getElementById('devHide');
 
 let typeIndex = 0;
 let charIndex = 0;
@@ -169,7 +169,6 @@ const typingAction = () => {
       wordLoc.innerHTML = `${currentWord}`;
     }
 
-    // devWord.style.display = currentWord === "Tutor for" ? "none" : "inline";
     setTimeout(() => isDeleting = true, 1000);
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
