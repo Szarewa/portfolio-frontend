@@ -42,6 +42,9 @@ header, aside, .home, .projects, .contact {
   background: var(--primary-color);
   color: #ffffff;
 }
+.home {
+  height: 100vh;
+}
 
 /* styling header */
 header {
@@ -90,9 +93,14 @@ nav a:hover {
   font-weight: var(--weight2);
   color: var(--secondary-color);
   padding: 10px;
-  border-bottom: 2px solid var(--secondary-color);
   border-radius: var(--second-rem);
   transition: all ease-in-out var(--transition-time);
+}
+nav a:nth-child(odd):hover {
+  border-bottom: 2px solid var(--secondary-color);
+}
+nav a:nth-child(even):hover {
+  border-top: 2px solid var(--secondary-color);
 }
 /* hide aside navigation on large screens */
 aside {
