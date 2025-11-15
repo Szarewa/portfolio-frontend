@@ -360,7 +360,7 @@ progress::-moz-progress-bar {
   font-weight: var(--weight1);
   color: var(--secondary-color);
 }
-.contact_info p {
+.contact_info p a {
   font-size: 20px;
   color: #e6b800;
 }
