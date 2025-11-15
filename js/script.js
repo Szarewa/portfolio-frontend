@@ -1,148 +1,148 @@
 //import firebase db
-import { db } from './firebaseConfig.js';
-import { ref, push, set, query, limitToLast, onValue } from 
-        "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+// import { db } from './firebaseConfig.js';
+// import { ref, push, set, query, limitToLast, onValue } from 
+//         "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
 
 function _(x) {
   return document.getElementById(x);
 }
 
 //declaring db references
-const commentRef = ref(db, "comments");
-const ratingRef = ref(db, "ratings");
-const latestComments = query(commentRef, limitToLast(4));
+// const commentRef = ref(db, "comments");
+// const ratingRef = ref(db, "ratings");
+// const latestComments = query(commentRef, limitToLast(4));
 
-//get rating items
-const stars = document.querySelectorAll('.star');
-const avgRatingSpan = document.getElementById('avgRating');
-const totalRatingSpan = document.getElementById('totalRating');
+// //get rating items
+// const stars = document.querySelectorAll('.star');
+// const avgRatingSpan = document.getElementById('avgRating');
+// const totalRatingSpan = document.getElementById('totalRating');
 
-const reviews = document.getElementById('reviews');
+// const reviews = document.getElementById('reviews');
 
-//retrieve comments from db
-const loadComments = () => {
-  onValue(latestComments, (snapshot) => {
-    const commentsArray = snapshot.val();
+// //retrieve comments from db
+// const loadComments = () => {
+//   onValue(latestComments, (snapshot) => {
+//     const commentsArray = snapshot.val();
 
-    if(!commentsArray) return;
+//     if(!commentsArray) return;
 
-    let sortedComments = Object.values(commentsArray);
-    reviews.innerHTML = " ";
+//     let sortedComments = Object.values(commentsArray);
+//     reviews.innerHTML = " ";
 
-    for (let sortedComment of sortedComments) {
-      const posterName = sortedComment.name;
-      const posterMsg = sortedComment.message;
-      const posterEmail = sortedComment.email;
-      const dt = new Date(sortedComment.dateTime);
+//     for (let sortedComment of sortedComments) {
+//       const posterName = sortedComment.name;
+//       const posterMsg = sortedComment.message;
+//       const posterEmail = sortedComment.email;
+//       const dt = new Date(sortedComment.dateTime);
 
-      if(!posterMsg || posterMsg.trim() === "") continue;
+//       if(!posterMsg || posterMsg.trim() === "") continue;
 
-      reviews.innerHTML += `
-        <div class='review_panel'>
-          <p class='review_title'>${posterName !== "" ? posterName : posterEmail}</p>
-          <p class='review_msg'>${posterMsg}</p>
-          <p class='review_period'>${dt.toLocaleString()}</p>
-        </div>
-      `;
-    }
-  })
-}
-loadComments();
+//       reviews.innerHTML += `
+//         <div class='review_panel'>
+//           <p class='review_title'>${posterName !== "" ? posterName : posterEmail}</p>
+//           <p class='review_msg'>${posterMsg}</p>
+//           <p class='review_period'>${dt.toLocaleString()}</p>
+//         </div>
+//       `;
+//     }
+//   })
+// }
+// loadComments();
 
-//retrieve ratings from db
-const loadRatings = () => {
-  onValue(ratingRef, (snapshot) => {
-    const ratingsArray = snapshot.val();
+// //retrieve ratings from db
+// const loadRatings = () => {
+//   onValue(ratingRef, (snapshot) => {
+//     const ratingsArray = snapshot.val();
 
-    if(!ratingsArray) return;
+//     if(!ratingsArray) return;
 
-    const ratingValues = [];
+//     const ratingValues = [];
 
-    let sortedRatings = Object.values(ratingsArray);
-    const ratingsLength = sortedRatings.length;
+//     let sortedRatings = Object.values(ratingsArray);
+//     const ratingsLength = sortedRatings.length;
 
-    avgRatingSpan.textContent = "";
-    totalRatingSpan.textContent = "";
+//     avgRatingSpan.textContent = "";
+//     totalRatingSpan.textContent = "";
 
-    for(let sortedRating of sortedRatings){
-      ratingValues.push(sortedRating.rating);
-    }
+//     for(let sortedRating of sortedRatings){
+//       ratingValues.push(sortedRating.rating);
+//     }
 
-    const sumRating = ratingValues.reduce((acc, ratingValue) => acc + ratingValue, 0);
-    const avgRating = Math.floor(sumRating/ratingsLength) + 1;
+//     const sumRating = ratingValues.reduce((acc, ratingValue) => acc + ratingValue, 0);
+//     const avgRating = Math.floor(sumRating/ratingsLength) + 1;
 
-    for(let i=0; i<avgRating; i++){
-      avgRatingSpan.innerHTML += `<span class='rated'><i class='fa fa-star'></i></span>`;
-    }
+//     for(let i=0; i<avgRating; i++){
+//       avgRatingSpan.innerHTML += `<span class='rated'><i class='fa fa-star'></i></span>`;
+//     }
 
-    totalRatingSpan.textContent = `${ratingsLength} Ratings`;
-  })
-}
-loadRatings();
+//     totalRatingSpan.textContent = `${ratingsLength} Ratings`;
+//   })
+// }
+// loadRatings();
 
-//function to hold and retun rating
-const starRating = () => {
-  //promise to be resolved in another function
-  return new Promise((resolve) => {
-    stars.forEach(star => {
-      star.addEventListener('click', () => {
-        const value = parseInt(star.getAttribute('data-value'));
+// //function to hold and retun rating
+// const starRating = () => {
+//   //promise to be resolved in another function
+//   return new Promise((resolve) => {
+//     stars.forEach(star => {
+//       star.addEventListener('click', () => {
+//         const value = parseInt(star.getAttribute('data-value'));
         
-        stars.forEach(s => { s.classList.remove('selected') });
-        for(let i=0; i < value; i++){
-          stars[i].classList.add('selected');
-        }
-        resolve(value);
-      })
-    })
-  });
-}
+//         stars.forEach(s => { s.classList.remove('selected') });
+//         for(let i=0; i < value; i++){
+//           stars[i].classList.add('selected');
+//         }
+//         resolve(value);
+//       })
+//     })
+//   });
+// }
 
-//saving rating to db 
-const saveRating = async () => {
-  const ratingVal = await starRating();
+// //saving rating to db 
+// const saveRating = async () => {
+//   const ratingVal = await starRating();
 
-  const newRating = push(ratingRef);
-  await set(newRating, {
-    rating: ratingVal,
-    createdAt: Date.now()
-  })
-}
-saveRating();
+//   const newRating = push(ratingRef);
+//   await set(newRating, {
+//     rating: ratingVal,
+//     createdAt: Date.now()
+//   })
+// }
+// saveRating();
 
-//get form fields
-const msgBtn = _('msgBtn');
-const nameField = _('nameField');
-const emailField = _('emailField');
-const msgField = _('msgField');
-const responseField = _('response');
+// //get form fields
+// const msgBtn = _('msgBtn');
+// const nameField = _('nameField');
+// const emailField = _('emailField');
+// const msgField = _('msgField');
+// const responseField = _('response');
 
-//sending to database
-const addComment = async (name, email, message, dateTime) => {
-  const newComment = push(commentRef);
-  await set(newComment, {
-    name: name,
-    email: email,
-    message: message,
-    dateTime: dateTime
-  });
-  responseField.textContent = "Comment added. Thank you!";
-}
+// //sending to database
+// const addComment = async (name, email, message, dateTime) => {
+//   const newComment = push(commentRef);
+//   await set(newComment, {
+//     name: name,
+//     email: email,
+//     message: message,
+//     dateTime: dateTime
+//   });
+//   responseField.textContent = "Comment added. Thank you!";
+// }
 
-//clicking the send button
-msgBtn.addEventListener('click', ()=> {
-  //get submitted data
-  const nameVal = nameField.value;
-  const emailVal = emailField.value;
-  const msgVal = msgField.value;
+// //clicking the send button
+// msgBtn.addEventListener('click', ()=> {
+//   //get submitted data
+//   const nameVal = nameField.value;
+//   const emailVal = emailField.value;
+//   const msgVal = msgField.value;
 
-  addComment(nameVal, emailVal, msgVal, Date.now());
-  responseField.textContent = 'Comment sent successfully'
+//   addComment(nameVal, emailVal, msgVal, Date.now());
+//   responseField.textContent = 'Comment sent successfully'
 
-  nameField.value = " ";
-  emailField.value = " ";
-  msgField.value = " ";
-});
+//   nameField.value = " ";
+//   emailField.value = " ";
+//   msgField.value = " ";
+// });
 
 //typing effect
 

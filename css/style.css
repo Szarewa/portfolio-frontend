@@ -6,7 +6,7 @@ html {
 :root {
   --box: border-box;
   --primary-color: #040336;
-  --secondary-color: #F9DC04;
+  --secondary-color: #e6b800;
   --first-rem: 2rem;
   --second-rem: 1rem;
   --third-rem: 0.5rem;
@@ -134,8 +134,6 @@ article.photo {
 }
 
 .main img {
-  width: 200px;
-  height: 200px;
   margin-top: -2rem;
   border: 1px solid var(--secondary-color);
   border-radius: 100%;
@@ -362,8 +360,9 @@ progress::-moz-progress-bar {
   font-weight: var(--weight1);
   color: var(--secondary-color);
 }
-.contact_info i {
+.contact_info p {
   font-size: 20px;
+  color: #e6b800;
 }
 .contact_info span {
   margin-left: var(--third-rem);

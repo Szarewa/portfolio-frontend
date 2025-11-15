@@ -28,7 +28,7 @@
 	
 	aside {
 		border: 1px solid #040336;
-		box-shadow: 3px 3px 6px black, -3px -3px 6px #F9DC04;
+		box-shadow: 3px 3px 6px black, -3px -3px 6px #e6b800;
 		opacity: 0;
 		transform: translateX(-30px);
 		animation: fadeSlideRight 0.5s ease-in forwards;
