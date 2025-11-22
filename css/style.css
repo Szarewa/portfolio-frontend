@@ -102,6 +102,7 @@ nav a:nth-child(odd):hover {
 nav a:nth-child(even):hover {
   border-top: 2px solid var(--secondary-color);
 }
+
 /* hide aside navigation on large screens */
 aside {
   display: var(--display-none);
@@ -352,23 +353,11 @@ progress::-moz-progress-bar {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-/* .skill-container {
-  width: 20vw;
-} */
+
 .skill-container img {
   width: 100px;
   width: 100px;
 }
-/* .skill-container .skill-level {
-  width: 100%;
-  padding-top: 0;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  padding: var(--third-rem);
-  text-align: center;
-  font-size: var(--weight2);
-} */
-
 
 /* styling contact section */
 .contact_content {
